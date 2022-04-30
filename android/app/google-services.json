@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "964613797926",
+    "project_id": "chopspick",
+    "storage_bucket": "chopspick.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964613797926:android:75d023a04f6a8f5a2acee7",
+        "android_client_info": {
+          "package_name": "com.gloria.chopspick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964613797926-rjqmig34f6babt9098beadhihf49hv10.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gloria.chopspick",
+            "certificate_hash": "f674149499c560cf4a563800c2cf9b03cb9e3129"
+          }
+        },
+        {
+          "client_id": "964613797926-oae9d790votstoae6vnr712c523afj84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc-Mvk38-FmAdA1srj0WWfALrqrib7VNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964613797926-oae9d790votstoae6vnr712c523afj84.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
