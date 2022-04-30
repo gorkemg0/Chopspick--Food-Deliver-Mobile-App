@@ -52,7 +52,6 @@ class UserRepository implements AuthBase {
   @override
   Future<MyUser?> createUserWithEmailAndPassword(
       String email, String sifre) async {
-    print("create çalıştı3");
     MyUser? _myUser = await (_firebaseAuthenticationService
         .createUserWithEmailAndPassword(email, sifre));
     return _myUser;

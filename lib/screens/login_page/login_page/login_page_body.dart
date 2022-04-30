@@ -4,6 +4,7 @@ import 'package:chopspick/global/styles/text_style.dart';
 import 'package:chopspick/screens/landing_page/landing_page.dart';
 import 'package:chopspick/screens/login_page/component/gmail_login_widget.dart';
 import 'package:chopspick/screens/login_page/component/login_button.dart';
+import 'package:chopspick/screens/login_page/component/text_field.dart';
 import 'package:chopspick/screens/login_page/register_page/register_page.dart';
 import 'package:chopspick/view_model/user_view_model.dart';
 import 'package:flutter/gestures.dart';
@@ -70,44 +71,35 @@ class _LoginPageBodyState extends State<LoginPageBody> {
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Text("Login to your Account",style: TextStyles.myPoppinsTextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.w500),),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              child: TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                style: TextStyles.inputTextStyle,
-                validator: (value) {
-                  if (value != null && value.isEmail) {
-                    return null;
-                  } else {
-                    return 'Please enter valid text';
-                  }
-                },
-                decoration: CustomDecoration.loginPageInputDecoration(
-                    hintText: "Email"),
-                onSaved: (String? value) {
-                  email = value;
-                },
-              ),
+            TextFieldLoginWidget(
+              inputValidator: (value) {
+                if (value != null && value.isEmail) {
+                  return null;
+                } else {
+                  return 'Please enter valid text';
+                }
+              },
+              onSaved: (String? value) {
+                email = value;
+              },
+              textInputType: TextInputType.emailAddress,
+              obscureText: false,
+              hintText: "Email",
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              child: TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-                validator: (value) {
-                  if (value != null && value.length >= 3) {
-                    return null;
-                  } else {
-                    return 'Password must be longer than 3 characters';
-                  }
-                },
-                style: TextStyles.inputTextStyle,
-                decoration: CustomDecoration.loginPageInputDecoration(
-                    hintText: "Password"),
-                onSaved: (String? value) {
-                  password = value;
-                },
-              ),
+            TextFieldLoginWidget(
+              inputValidator: (value) {
+                if (value != null && value.length >= 6) {
+                  return null;
+                } else {
+                  return 'Password must be longer than 6 characters';
+                }
+              },
+              onSaved: (String? value) {
+                password = value;
+              },
+              textInputType: TextInputType.visiblePassword,
+              obscureText: true,
+              hintText: "Password",
             ),
           ],
         ),

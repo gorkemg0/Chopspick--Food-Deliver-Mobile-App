@@ -4,6 +4,7 @@ import 'package:chopspick/global/styles/text_style.dart';
 import 'package:chopspick/screens/landing_page/landing_page.dart';
 import 'package:chopspick/screens/login_page/component/gmail_login_widget.dart';
 import 'package:chopspick/screens/login_page/component/login_button.dart';
+import 'package:chopspick/screens/login_page/component/text_field.dart';
 import 'package:chopspick/view_model/user_view_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,9 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
       if (password == password2) {
         try {
           _userModel.state = ViewState.Busy;
-          var result = await _userModel.createUserWithEmailAndPassword(email!, password!);
-          if (result!=null) {
+          var result = await _userModel.createUserWithEmailAndPassword(
+              email!, password!);
+          if (result != null) {
             await _userModel.currentUser();
             setState(() {});
             Get.offAll(LandingPage());
@@ -79,66 +81,58 @@ class _RegisterPageBodyState extends State<RegisterPageBody> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text("Create an Account",style: TextStyles.myPoppinsTextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.w500),),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              child: TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                style: TextStyles.inputTextStyle,
-                validator: (value) {
-                  if (value != null && value.isEmail) {
-                    return null;
-                  } else {
-                    return 'Please enter valid text';
-                  }
-                },
-                decoration: CustomDecoration.loginPageInputDecoration(
-                    hintText: "Email"),
-                onSaved: (String? value) {
-                  email = value;
-                },
+              child: Text(
+                "Create an Account",
+                style: TextStyles.myPoppinsTextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              child: TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                style: TextStyles.inputTextStyle,
-                obscureText: true,
-                validator: (value) {
-                  if (value != null && value.length >= 3) {
-                    return null;
-                  } else {
-                    return 'Password must be longer than 3 characters';
-                  }
-                },
-                decoration: CustomDecoration.loginPageInputDecoration(
-                    hintText: "Password"),
-                onSaved: (String? value) {
-                  password = value;
-                },
-              ),
+            TextFieldLoginWidget(
+              inputValidator: (value) {
+                if (value != null && value.isEmail) {
+                  return null;
+                } else {
+                  return 'Please enter valid text';
+                }
+              },
+              onSaved: (String? value) {
+                email = value;
+              },
+              textInputType: TextInputType.emailAddress,
+              hintText: "Email",
+              obscureText: false,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              child: TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-                validator: (value) {
-                  if (value != null && value.length >= 3) {
-                    return null;
-                  } else {
-                    return 'Password must be longer than 3 characters';
-                  }
-                },
-                style: TextStyles.inputTextStyle,
-                decoration: CustomDecoration.loginPageInputDecoration(
-                    hintText: "Confirm Password"),
-                onSaved: (String? value) {
-                  password2 = value;
-                },
-              ),
+            TextFieldLoginWidget(
+              inputValidator: (value) {
+                if (value != null && value.length >= 6) {
+                  return null;
+                } else {
+                  return 'Password must be longer than 6 characters';
+                }
+              },
+              onSaved: (String? value) {
+                password = value;
+              },
+              textInputType: TextInputType.visiblePassword,
+              obscureText: true,
+              hintText: "Password",
+            ),
+            TextFieldLoginWidget(
+              inputValidator: (value) {
+                if (value != null && value.length >= 6) {
+                  return null;
+                } else {
+                  return 'Password must be longer than 6 characters';
+                }
+              },
+              onSaved: (String? value) {
+                password2 = value;
+              },
+              textInputType: TextInputType.visiblePassword,
+              obscureText: true,
+              hintText: "Confirm Password",
             ),
           ],
         ),
