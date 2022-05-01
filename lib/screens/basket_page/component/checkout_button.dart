@@ -29,9 +29,9 @@ class CheckOutButton extends StatelessWidget {
                 name: userViewModel.user!.userName!,
                 message: textEditingController.text,
                 totalPrice: basketViewModel.totalPrice.value);
+            await Future.delayed(Duration(seconds: 1));
             await orderViewModel.createOrder(
                 products: basketViewModel.products, order: orderModel);
-            await Future.delayed(Duration(seconds: 1));
             basketViewModel.clearBasket();
             textEditingController.clear();
             BottomNavBarWidget().goToScreen(0);

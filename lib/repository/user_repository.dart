@@ -17,8 +17,8 @@ class UserRepository implements AuthBase {
   Future<MyUser?> currentUser() async {
     MyUser? _myUser = await _firebaseAuthenticationService.currentUser();
     try {
-      MyUser? yeniUser = await _fireStoreDBService.readUser(_myUser!.userID);
-      return yeniUser;
+      MyUser? newUser = await _fireStoreDBService.readUser(_myUser!.userID);
+      return newUser;
     } catch (e) {
       return null;
     }
@@ -51,16 +51,16 @@ class UserRepository implements AuthBase {
 
   @override
   Future<MyUser?> createUserWithEmailAndPassword(
-      String email, String sifre) async {
+      String email, String password) async {
     MyUser? _myUser = await (_firebaseAuthenticationService
-        .createUserWithEmailAndPassword(email, sifre));
+        .createUserWithEmailAndPassword(email, password));
     return _myUser;
   }
 
   @override
-  Future<MyUser?> signInWithEmailAndPassword(String email, String sifre) async {
+  Future<MyUser?> signInWithEmailAndPassword(String email, String password) async {
     MyUser? _myUser = await (_firebaseAuthenticationService
-        .signInWithEmailAndPassword(email, sifre));
+        .signInWithEmailAndPassword(email, password));
     if (_myUser != null) {
       MyUser _user = await _fireStoreDBService.readUser(_myUser.userID);
       return _user;

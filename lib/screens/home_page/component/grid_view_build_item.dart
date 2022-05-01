@@ -88,7 +88,7 @@ class GridViewBuilderProductItem extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
-                      basketViewModel.addBasket(productModel: product);
+                      basketViewModel.addBasketOne(productModel: product);
                     },
                     child: Icon(
                       CustomIcons.filled_add,

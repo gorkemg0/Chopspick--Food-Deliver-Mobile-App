@@ -74,10 +74,10 @@ class FirebaseAuthenticationService implements AuthBase {
 
   @override
   Future<MyUser?> createUserWithEmailAndPassword(
-      String email, String sifre) async {
+      String email, String password) async {
     try {
       UserCredential userCreateResult = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: sifre);
+          email: email, password: password);
       if ((userCreateResult.user) != null) {
         MyUser _myUser =
             MyUser(userID: userCreateResult.user!.uid, email: userCreateResult.user!.email);
@@ -96,10 +96,10 @@ class FirebaseAuthenticationService implements AuthBase {
   }
 
   @override
-  Future<MyUser?> signInWithEmailAndPassword(String email, String sifre) async {
+  Future<MyUser?> signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: sifre);
+          email: email, password: password);
       return _userFromFiresbase(result.user);
     } on FirebaseAuthException catch (e) {
       Dialogs().errorDialog(contentText: Errors.show(e.code));

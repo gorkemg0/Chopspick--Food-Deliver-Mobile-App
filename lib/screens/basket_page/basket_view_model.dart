@@ -33,6 +33,21 @@ class BasketViewModel extends GetxController {
     setBasket();
   }
 
+  addBasketOne({required ProductModel productModel}) {
+    bool isAlreadyHave = false;
+    products.value.forEach((element) {
+      if(element.productID==productModel.productID){
+        isAlreadyHave=true;
+        element.productAmount++;
+      }
+    });
+    if (isAlreadyHave!=true) {
+      productModel.productAmount=1;
+      products.value.add(productModel);
+    }
+    setBasket();
+  }
+
   updateBasket({required ProductModel productModel}) {
     products.value.forEach((element) {
       if(element.productID==productModel.productID){
